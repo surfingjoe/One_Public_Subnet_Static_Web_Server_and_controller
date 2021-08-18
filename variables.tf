@@ -26,12 +26,12 @@ variable "instance_type" {
 
 variable "key" {
   type    = string
-  default = "JoesKey"  
+  default = "Your AWS Key Name for the region"  
 }
 
 variable "ssh_location" {
   type        = string
   description = "My Public IP Address"
-  default     = "172.89.66.78/32"
+  default     = "1.2.3.432"
 }
 

@@ -13,8 +13,8 @@ resource "aws_iam_policy" "copy-policy" {
                 "s3:ListBucket"
             ],
 
-      "Resource": ["arn:aws:s3:::myfiles-surfingjoe",
-                    "arn:aws:s3:::myfiles-surfingjoe/*"]
+      "Resource": ["arn:aws:s3:::change the name to your bucket",
+                    "arn:aws:s3:::change the name to your bucket/*"]
     }
   ]
 }
