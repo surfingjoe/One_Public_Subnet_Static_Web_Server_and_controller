@@ -12,7 +12,7 @@ resource "aws_instance" "web" {
   ami                    = data.aws_ssm_parameter.ubuntu-focal.value
   instance_type          = var.instance_type
   subnet_id              = aws_subnet.public-1.id
-  vpc_security_group_ids = ["${aws_security_group.web.id}"]
+  vpc_security_group_ids = ["${aws_security_group.web-sg.id}"]
   iam_instance_profile   = "${aws_iam_instance_profile.assume_role_profile.name}" 
   key_name               = var.key
   user_data = file("bootstrap_web.sh")
@@ -27,7 +27,7 @@ resource "aws_instance" "controller" {
   ami                    = data.aws_ssm_parameter.ubuntu-focal.value
   instance_type          = var.instance_type
   subnet_id              = aws_subnet.public-1.id
-  vpc_security_group_ids = ["${aws_security_group.controller.id}"]
+  vpc_security_group_ids = ["${aws_security_group.controller-sg .id}"]
   user_data              = file("bootstrap_controller.sh")
   key_name               = var.key
 

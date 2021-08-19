@@ -1,3 +1,4 @@
+# --------- Setup the VPC -------------------------
 resource "aws_vpc" "my-vpc" {
   cidr_block           = var.vpc_cidr
   enable_dns_support   = true
@@ -7,13 +8,14 @@ resource "aws_vpc" "my-vpc" {
     Stage = "Test"
   }
 }
+# --------- Setup an Internet Gateway --------------
 resource "aws_internet_gateway" "my-igw" {
   vpc_id = aws_vpc.my-vpc.id
   tags = {
     Name = "My IGW"
   }
 }
-
+# --------- Setup a public subnet -------------------
 resource "aws_subnet" "public-1" {
   vpc_id                  = aws_vpc.my-vpc.id
   map_public_ip_on_launch = true
@@ -26,7 +28,7 @@ resource "aws_subnet" "public-1" {
   }
 }
 
-
+# -------- Setup a route to the Internet ----------------
 resource "aws_route_table" "public-route" {
   vpc_id = aws_vpc.my-vpc.id
 
@@ -38,7 +40,7 @@ resource "aws_route_table" "public-route" {
     Name = "Public-Route"
   }
 }
-
+# ---------- associate internet route to public subnet ----
 resource "aws_route_table_association" "public-1-assoc" {
   subnet_id      = aws_subnet.public-1.id
   route_table_id = aws_route_table.public-route.id

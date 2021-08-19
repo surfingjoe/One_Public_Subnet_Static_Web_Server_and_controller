@@ -26,10 +26,11 @@ Note:  You don't have to install these requirements into your desktop.  It is ce
 
 Once the requirements are installed clone this repository and edit the file variables.tf
 
-*  Edit the variable for your choice for AWS Region (currently, the default is "us-west-1").
-*  Edit the CIDR blocks if you want to use different address range for your new VPC
-*  Edit the Instance type if you want to use a different instance type (note: the default "t2.micro" is the only type you can use for free tier)
-*  Edit the variable ssh_location (put in your public IP address, you can find your public IP address by opening a browser and typing "what is my IP" in the address bar)
+*  Edit the variable in variables.tf file, with your choice for AWS Region (currently, the default is "us-west-1").
+*  Edit the CIDR blocks in variables.tf file,  if you want to use different address range for your new VPC
+*  Edit the Instance type variable in variables.tf,  if you want to use a different instance type (note: the default "t2.micro" is the only type you can use for free tier)
+*  Edit the variable ssh_location (put in your public IP address, you can find your public IP address by opening a browser and typing "what is my IP" in the address bar). Be sure to change the variable default to "your IP address with a  /32" subnet mask.  
+*  Place your regional EC2 Key Pair name as the default for variable "Key" in the variables.tf file
 
 ## Create an S3 Bucket in AWS
 
@@ -48,6 +49,8 @@ Accept the default settings and create the bucket, choose **Create**.
 I have included a "Creative Commons" static website that found @ html5up.net.  As of the time of this writing I've scanned the files & no malware or viruses exist and it is free to use from html5up's web site.
 
 Copy the "Static_Website_files.zip" to any folder, unzip the file and then copy the assets folder and the index.html file into your new S3 bucket
+
+#### Configure the s3_policy.tf file
 
 Configure the s3_policy.tf  with the "arn" of your new S3 bucket, the s3_policy creates an IAM policy that allows your new Web server to copy the contents of your S3 bucket into /var/www/html folder 
 

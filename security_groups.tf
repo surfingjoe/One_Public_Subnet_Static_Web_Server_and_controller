@@ -1,12 +1,13 @@
 
-resource "aws_security_group" "web" {
+# ------------- Create Security Group for Web Server --------
+resource "aws_security_group" "web-sg" {
   vpc_id      = aws_vpc.my-vpc.id
   description = "Allows HTTP"
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks  = ["10.0.1.0/24"]
+    security_groups  = ["${aws_security_group.controller-sg.id}"]
   }
   ingress {
     from_port   = 80
@@ -25,8 +26,8 @@ resource "aws_security_group" "web" {
     Stage = "Test"
   }
 }
-
-resource "aws_security_group" "controller" {
+# ------------- Create Security Group for Controller --------
+resource "aws_security_group" "controller-sg" {
   vpc_id      = aws_vpc.my-vpc.id
   description = "Allows SSH from MyIP"
   ingress {

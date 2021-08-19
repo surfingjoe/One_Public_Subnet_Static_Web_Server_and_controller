@@ -1,5 +1,6 @@
+# ------------ Create the actual S3 read & copy files policy ----
 resource "aws_iam_policy" "copy-policy" {
-  name        = "copy-anible-files"
+  name        = "copy and read permissions"
   description = "IAM policy to allow copy files from S3 bucket"
 
   policy = <<EOF
@@ -13,15 +14,15 @@ resource "aws_iam_policy" "copy-policy" {
                 "s3:ListBucket"
             ],
 
-      "Resource": ["arn:aws:s3:::change the name to your bucket",
-                    "arn:aws:s3:::change the name to your bucket/*"]
+      "Resource": ["arn:aws:s3:::The name of your bucket",
+                    "arn:aws:s3:::the name of your bucket/*"]
     }
   ]
 }
 EOF
 }
 
-
+# ------------------ create assume role -----------------
 resource "aws_iam_role" "assume-role" {
   name               = "assume-role"
   description        = "IAM policy that allows assume role"
@@ -39,14 +40,14 @@ resource "aws_iam_role" "assume-role" {
 }
 EOF
 }
-
+# ------------ attach the role to the policy ----------------
 resource "aws_iam_role_policy_attachment" "assign-copy-policy" {
   role       = aws_iam_role.assume-role.name
   policy_arn = aws_iam_policy.copy-policy.arn
   depends_on = [aws_iam_policy.copy-policy]
 }
 
-
+# ------------ create a profile to be used by EC2 instance ----
 resource "aws_iam_instance_profile" "assume_role_profile" {
   name = "assume_role_profile"
   role = aws_iam_role.assume-role.name

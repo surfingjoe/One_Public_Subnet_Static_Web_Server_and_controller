@@ -32,6 +32,5 @@ variable "key" {
 variable "ssh_location" {
   type        = string
   description = "My Public IP Address"
-  default     = "1.2.3.432"
+  default     = "1.2.3.4/32"
 }
-
