@@ -1,10 +1,10 @@
 # Creating a New VPC
 
-## With One Public Subnet and One Web Server
+## With One Public Subnet, Static Website and a controller
 
 The Web server starts out as a simple "Hello World"
 
-<img src="One-public-one-web.png">
+<img src="VPC_one_public_subnet_static_web_server-Compute Layout.png">
 
 ------
 
@@ -17,12 +17,12 @@ The Web server starts out as a simple "Hello World"
 [Install Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 
 ```
-Note:  You don't have to install these requirements into your desktop.  It is certainly quite feasible to use a virtual desktop for your development environment using tools like Oracle's virtualbox or VMware Workstation or Player, or Mac Fusion or Mac Parallels.  Perhaps an AWS Workspace or AWS Cloud 9 environments.
+Note:  You don't have to install the requirements onto your desktop.  It is certainly quite feasible to use a virtual desktop for your development environment using tools like Oracle's virtualbox or VMware Workstation or Player, or Mac Fusion or Mac Parallels.  Perhaps an AWS Workspace or AWS Cloud 9 environments.
 ```
 
 ## Configuration
 
-`Note: The variables do not have to be changed if you are ok with running a new VPC and Web server out of US-West-1 region`
+`Note: **You need to change variables.tf, s3_policy.tf and create an S3 bucket for this exercise**
 
 Once the requirements are installed clone this repository and edit the file variables.tf
 
