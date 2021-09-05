@@ -1,8 +1,9 @@
+# ------------- set provider and region ----------------------------
 provider "aws" {
   region = var.region
 }
 
-#Get Linux Ubuntu using SSM Parameter 
+#--------- Get Ubuntu 20.04 AMI image for the region ----------------
 data "aws_ssm_parameter" "ubuntu-focal" {
   name = "/aws/service/canonical/ubuntu/server/20.04/stable/current/amd64/hvm/ebs-gp2/ami-id"
 }
