@@ -1,6 +1,6 @@
 # ------------ Create the actual S3 read & copy files policy ----
 resource "aws_iam_policy" "copy-policy" {
-  name        = "copy and read permissions"
+  name        = "S3_read_premissions"
   description = "IAM policy to allow copy files from S3 bucket"
 
   policy = <<EOF
@@ -15,7 +15,7 @@ resource "aws_iam_policy" "copy-policy" {
             ],
 
       "Resource": ["arn:aws:s3:::The name of your bucket",
-                    "arn:aws:s3:::the name of your bucket/*"]
+                    "arn:aws:s3:::The name of your bucket*"]
     }
   ]
 }

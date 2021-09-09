@@ -4,10 +4,10 @@ resource "aws_security_group" "web-sg" {
   vpc_id      = aws_vpc.my-vpc.id
   description = "Allows HTTP"
   ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    security_groups  = ["${aws_security_group.controller-sg.id}"]
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    security_groups = ["${aws_security_group.controller-sg.id}"]
   }
   ingress {
     from_port   = 80

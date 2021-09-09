@@ -24,7 +24,7 @@ resource "aws_subnet" "public-1" {
 
   tags = {
     Name  = "Public-Subnet-1"
-    Stage ="Test"
+    Stage = "Test"
   }
 }
 
