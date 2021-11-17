@@ -1,6 +1,22 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+    }
+  }
+}
+
 # ------------- set provider and region ----------------------------
 provider "aws" {
   region = var.region
+}
+
+terraform {
+  backend "s3" {
+    bucket = "surfingjoes-terraform-states"
+    key    = "terraform.tfstate"
+    region = "us-west-1"
+  }
 }
 
 #--------- Get Ubuntu 20.04 AMI image for the region ----------------
