@@ -17,7 +17,7 @@ The Web server starts out as a simple "Hello World"
 [Install Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 
 ```
-Note:  You don't have to install the requirements onto your desktop.  It is certainly quite feasible to use a virtual desktop for your development environment using tools like Oracle's virtualbox or VMware Workstation or Player, or Mac Fusion or Mac Parallels.  Perhaps an AWS Workspace or AWS Cloud 9 environments.
+Note:  You don't have to install these requirements into your desktop.  You can use virtual desktops instead or cloud based desktops.  For example running a Linux platform like Ubuntu using Oracle's Virtualbox then install the requirements within that development environment.  Or perhaps use AWS Cloud 9 environment.
 ```
 
 ## Configuration
@@ -76,3 +76,14 @@ After Terraform finishes provisioning the new VPC, Security Group and Web Server
 Once you have finished with this example run:
 
 * Terraform Destroy (to remove VPC and Web Server)
+
+## Integrating with Jenkins
+* I have included a Jenkinsfile, to use it, be sure to add Terraform Plugin which is required, and be sure to configure Terraform Plugin  
+* I have a built in name for a Jenkins Slave encoded in the Jenkins file, pay attention to the Agent name, you'll need to change slave name.  
+* If you integrating Github with Jenkins, then know this: I have configured the Jenkinsfile with paramaters. When run for the first time, it will need build approval, allowing you to execuite 'Terraform Apply'
+
+**To cleanup AWS after Jenkins build, manually run the Jenkins Project a second time and choose "Build with Parameters" and checkmark Destroy **
+
+* Note: The terraform plugin doesn't recognize parameters the first time it is run, (a bug in Jenkins),hence will fail because it doesn't see the parameters on the first run.  I am Ok with that, for myself, however to make it run the first time, everytime, you might want to remove the lines associated with using workspace naming paramater and the line that utilizes the workspace name.
+
+* Also, if using the Jenkins file, pay attention to the credential names to plug in your secret credentials, or better yet use base64encode to encrypt the credentials.
