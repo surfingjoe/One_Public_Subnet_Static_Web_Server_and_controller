@@ -19,7 +19,7 @@ pipeline{
     stages{
         stage('Git Checkout'){
            steps{
-               git branch: 'master', credentialsId: 'Github', url: 'https://github.com/surfingjoe/One_Public_Subnet_Basic_Web_Server'
+               git branch: 'master', credentialsId: 'Github', url: 'https://github.com/surfingjoe/One_Public_Subnet_Static_Web_Server_and_controller'
            }
         }
         stage('Terraform Init'){
