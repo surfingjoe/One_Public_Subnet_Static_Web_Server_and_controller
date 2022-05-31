@@ -14,7 +14,8 @@ resource "aws_iam_policy" "copy-policy" {
                 "s3:ListBucket"
             ],
 
-      "Resource": "*"
+      "      "Resource": ["arn:aws:s3:::The name of your bucket",
+                          "arn:aws:s3:::The name of your bucket*"]
     }
   ]
 }
