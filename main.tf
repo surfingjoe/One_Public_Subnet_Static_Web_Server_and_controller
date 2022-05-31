@@ -30,7 +30,7 @@ resource "aws_instance" "web" {
   instance_type          = var.instance_type
   subnet_id              = aws_subnet.public-1.id
   vpc_security_group_ids = ["${aws_security_group.web-sg.id}"]
-  iam_instance_profile   = aws_iam_instance_profile.assume_role_profile.name
+  iam_instance_profile   = "${aws_iam_instance_profile.assume_role_profile.id}"
   key_name               = var.key
   user_data              = file("bootstrap_web.sh")
   tags = {
